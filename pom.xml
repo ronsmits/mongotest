@@ -15,7 +15,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -44,6 +44,7 @@
       <groupId>org.mongodb</groupId>
       <artifactId>mongo-java-driver</artifactId>
       <version>2.12.3</version>
+        <scope>provided</scope>
     </dependency>
     <!-- to test with TomEE and Arquillian
     <dependency>
@@ -116,11 +117,7 @@
           <artifactId>tomee-maven-plugin</artifactId>
           <version>1.7.2</version>
         </plugin>
-        <plugin>
-          <groupId>org.apache.openjpa</groupId>
-          <artifactId>openjpa-maven-plugin</artifactId>
-          <version>${version.openjpa}</version>
-        </plugin>
+
       </plugins>
     </pluginManagement>
 
@@ -149,34 +146,13 @@
         <artifactId>tomee-maven-plugin</artifactId>
         <configuration>
           <context>ROOT</context>
+            <tomeeVersion>1.7.2</tomeeVersion>
+            <tomeeClassifier>plus</tomeeClassifier>
+            <libs>
+                <lib>org.mongodb:mongo-java-driver:2.12.3</lib>
+            </libs>
+            <config>${project.basedir}/tomee/conf</config>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.openjpa</groupId>
-        <artifactId>openjpa-maven-plugin</artifactId>
-        <configuration>
-          <includes>**/entities/*.class</includes>
-          <excludes>**/entities/XML*.class</excludes>
-          <addDefaultConstructor>true</addDefaultConstructor>
-          <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
-        </configuration>
-        <executions>
-          <execution>
-            <id>enhancer</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>enhance</goal>
-            </goals>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.openjpa</groupId>
-            <artifactId>openjpa</artifactId>
-            <!-- Set this version to be the same as the version used in your runtime -->
-            <version>${version.openjpa}</version>
-          </dependency>
-        </dependencies>
       </plugin>
     </plugins>
   </build>
