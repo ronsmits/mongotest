@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<resources>
+    <Resource id="mongoUri" class-name="com.mongodb.MongoClientURI" constructor="uri">
+        uri mongodb://localhost/test
+    </Resource>
+</resources>
