@@ -25,13 +25,13 @@ public class MongoDBProducer {
     public void init() throws UnknownHostException {
         System.out.println("*******ClientURI=" + mongoClientURI);
 
-        final MongoClientURI uri = new MongoClientURI("mongodb://localhost/pvdata");
-        final MongoClient mongoClient = new MongoClient(uri);
-        db = mongoClient.getDB(uri.getDatabase());
+        final MongoClient mongoClient = new MongoClient();
+        db = mongoClient.getDB(mongoClientURI.getDatabase());
     }
 
     @Produces
     public DB createDB() {
+        System.out.printf("createDB called");
         return db;
     }
 

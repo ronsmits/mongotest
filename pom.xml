@@ -29,11 +29,11 @@
     <distributionManagement>
         <repository>
             <id>mediaserver</id>
-            <url>http://ronsmits.org:8110/repository/releases</url>
+            <url>http://ronsmits.org/archiva/repository/releases</url>
         </repository>
         <snapshotRepository>
             <id>mediaserver</id>
-            <url>http://ronsmits.org:8110/repository/snapshots</url>
+            <url>http://ronsmits.org/archiva/repository/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
     <properties>
